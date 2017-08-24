@@ -3,10 +3,10 @@
 DISTRO = fedora-26-x86_64
 VERSION = 2.2
 DG = /usr/bin/dg
-DG_EXEC_NO_SPEC = ${DG} --distro ${DISTRO}.yaml --spec specs/common.yml
-DISTRO_ID = $(shell ${DG_EXEC_NO_SPEC} --template "{{ config.os.id }}")
-DG_EXEC = ${DG_EXEC_NO_SPEC} --spec specs/${VERSION}.yml --spec specs/${DISTRO_ID}.yml
-TAG = ${DISTRO}/awesome:${VERSION}
+
+DG_EXEC = ${DG} --distro ${DISTRO}.yaml --spec specs/common.yml --multispec specs/multispec.yml --multispec-selector version=${VERSION}
+DISTRO_ID = $(shell ${DG_EXEC} --template "{{ config.os.id }}")
+TAG = ${DISTRO_ID}/awesome:${VERSION}
 
 dg:
 	${DG_EXEC} --template Dockerfile --output Dockerfile.rendered
@@ -23,7 +23,7 @@ run: build
 	docker run -p 9000:9000 -d ${TAG}
 
 test: build
-	cd tests; VERSION=${VERSION} DOCKERFILE="../Dockerfile.rendered" MODULE=docker URL="docker=${TAG}" make all
+	cd tests; VERSION=${VERSION} DISTRO=${DISTRO} DOCKERFILE="../Dockerfile.rendered" MODULE=docker URL="docker=${TAG}" make all
 
 clean:
 	rm -f Dockerfile.*
