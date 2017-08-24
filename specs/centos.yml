@@ -1,0 +1,3 @@
+vendor: "Fedora Project"
+authoritative_source_url: "some.url.fedoraproject.org"
+distro_specific_help: "Some CentOS specific help"
