@@ -1,6 +1,6 @@
 Dockerfile.*
 help/help.md.*
-root/help.1.*
+root/
 
 *.py[co]
 *.swp
