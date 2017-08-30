@@ -1,7 +1,7 @@
 .PHONY: dg doc build run test
 
 DISTRO = fedora-26-x86_64
-VERSION = 2.2
+VERSION = 2.4
 DG = /usr/bin/dg
 
 DG_EXEC = ${DG} --distro ${DISTRO}.yaml --spec specs/common.yml --multispec specs/multispec.yml --multispec-selector version=${VERSION}

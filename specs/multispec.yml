@@ -17,13 +17,12 @@ specs:
       distro_specific_help: "Some CentOS specific help"
   version:
     "2.2":
-      version: 2.2
+      version: "2.2"
     "2.4":
-      version: 2.4
+      version: "2.4"
 
 matrix:
   exclude:
-    - distroinfo: fedora
-      distros:
+    - distros:
         - fedora-26-x86_64
-      version: 2.2
+      version: "2.2"
