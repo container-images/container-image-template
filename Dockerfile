@@ -16,7 +16,7 @@ LABEL summary="A container that tells you how awesome it is." \
       org.fedoraproject.component="postfix" \
       authoritative-source-url="{{ spec.authoritative_source_url }}" \
       io.k8s.description="{{ spec.description }}" \
-      io.k8s.display-name="Awesome container with SW version {{ spec.software_version }}" \
+      io.k8s.display-name="Awesome container with SW version {{ spec.version }}" \
       io.openshift.expose-services="9000:http" \
       io.openshift.tags="some,tags"
 
