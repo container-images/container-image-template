@@ -1,7 +1,6 @@
 #!/bin/bash -ex
 
-pip install distgen
-make DG=`which dg` dg
+make DG="docker run -v $(pwd):/var/dgdir slavek/distgen" dg
 # A hack: we need Dockerhub to see a `Dockerfile` when cloning,
 # but `Dockerfile` is actually a template and `make` will output
 # `Dockerfile.rendered`. To make sure the build doesn't use
