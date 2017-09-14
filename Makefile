@@ -1,4 +1,4 @@
-.PHONY: dg doc build run test
+.PHONY: dg doc build run test clean
 
 DISTRO = fedora-26-x86_64
 VERSION = 2.4
