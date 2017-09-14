@@ -23,4 +23,4 @@ It uses [distgen](https://github.com/devexp-db/distgen/) to render the `Dockerfi
 * `make [DISTRO=<distgen-distro>] [VERSION=<version>] run` - build and run container with a certain distro and software version
 * `make [DISTRO=<distgen-distro>] [VERSION=<version>]test` - build and test a container with certain distro and software version
 
-Note: default distro is `fedora-26-x86_64` and default version is `2.2`
+Note: default distro is `fedora-26-x86_64` and default version is `2.4`
