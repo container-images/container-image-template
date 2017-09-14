@@ -3,6 +3,7 @@
 DISTRO = fedora-26-x86_64
 VERSION = 2.4
 DG = /usr/bin/dg
+GOMD2MAN = /usr/bin/go-md2man
 
 DG_EXEC = ${DG} --distro ${DISTRO}.yaml --spec specs/common.yml --multispec specs/multispec.yml --multispec-selector version=${VERSION}
 DISTRO_ID = $(shell ${DG_EXEC} --template "{{ config.os.id }}")
@@ -14,7 +15,7 @@ dg:
 
 doc: dg
 	mkdir -p ./root/
-	go-md2man -in=help/help.md.rendered -out=./root/help.1
+	${GOMD2MAN} -in=help/help.md.rendered -out=./root/help.1
 
 build: doc dg
 	docker build --tag=${TAG} -f Dockerfile.rendered .
