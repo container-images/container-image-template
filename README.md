@@ -27,4 +27,4 @@ Note: default distro is `fedora-26-x86_64` and default version is `2.4`
 
 ## Automatic Building on Dockerhub
 
-To setup and automated Dockerhub build for a repo that uses distgen, you need to include `hooks/pre_build`. This script makes sure that a certain configuration is rendered on Dockerhub prior to the build itself by using distgen in container in the `pre_build` stage.
+To setup an automated Dockerhub build for a repo that uses distgen, you need to include `hooks/pre_build`. This script makes sure that a certain configuration is rendered on Dockerhub prior to the build itself by using distgen in container in the `pre_build` stage.
