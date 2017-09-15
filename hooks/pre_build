@@ -6,4 +6,4 @@ make DG="docker run -v $(pwd):/var/dgdir slavek/distgen" GOMD2MAN="docker run -v
 # `Dockerfile.rendered`. To make sure the build doesn't use
 # the template, we replace it with the rendered `Dockerfile`
 # after rendering. 
-mv Dockerfile.rendered Dockerfile
+mv Dockerfile Dockerfile.template
