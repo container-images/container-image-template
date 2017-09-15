@@ -25,8 +25,8 @@ build: doc dg
 run: build
 	docker run -p 9000:9000 -d ${TAG}
 
-test: build
-	cd tests; VERSION=${VERSION} DISTRO=${DISTRO} DOCKERFILE="../$(DOCKERFILE)" MODULE=docker URL="docker=${TAG}" make all
+test:
+	cd tests; VERSION=${VERSION} DISTRO=${DISTRO} DOCKERFILE="../$(DOCKERFILE)" MODULE=docker URL="docker=${TAG}" mtf -l *.py
 
 clean:
 	rm -f $(DOCKERFILE)
