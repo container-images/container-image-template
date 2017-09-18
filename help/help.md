@@ -1,4 +1,4 @@
-% {{ config.os.name }} (1) Container Image Pages
+% {{ spec.image_name }} (1) Container Image Pages
 % MAINTAINER
 % DATE
 

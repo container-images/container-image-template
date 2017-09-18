@@ -8,18 +8,23 @@ specs:
         - fedora-25-x86_64
       vendor: "Fedora Project"
       authoritative_source_url: "some.url.fedoraproject.org"
-      distro_specific_help: "Some Fedora specific help"
+      distro_specific_help: "Some Fedora {{ config.os.version }} specific help"
     centos:
       distros:
         - centos-7-x86_64
       vendor: "CentOS"
       authoritative_source_url: "some.url.centos.org"
-      distro_specific_help: "Some CentOS specific help"
+      distro_specific_help: "Some CentOS {{ config.os.version }} specific help"
   version:
     "2.2":
       version: "2.2"
     "2.4":
       version: "2.4"
+  variant:
+    upstream:
+      image_name: slavek/awesome
+    downstream:
+      image_name: "{{ config.os.id }}{{ config.os.version }}/awesome"
 
 matrix:
   exclude:

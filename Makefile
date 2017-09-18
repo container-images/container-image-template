@@ -2,12 +2,13 @@
 
 DISTRO = fedora-26-x86_64
 VERSION = 2.4
+VARIANT = upstream
 DG = /usr/bin/dg
 GOMD2MAN = /usr/bin/go-md2man
 DOCKERFILE_SRC := Dockerfile.template
 DOCKERFILE := Dockerfile
 
-DG_EXEC = ${DG} --distro ${DISTRO}.yaml --spec specs/common.yml --multispec specs/multispec.yml --multispec-selector version=${VERSION}
+DG_EXEC = ${DG} --max-passes 25 --distro ${DISTRO}.yaml --spec specs/common.yml --multispec specs/multispec.yml --multispec-selector version=${VERSION} --multispec-selector variant=${VARIANT}
 DISTRO_ID = $(shell ${DG_EXEC} --template "{{ config.os.id }}")
 TAG = ${DISTRO_ID}/awesome:${VERSION}
 
@@ -25,7 +26,7 @@ build: doc dg
 run: build
 	docker run -p 9000:9000 -d ${TAG}
 
-test:
+test: build
 	cd tests; VERSION=${VERSION} DISTRO=${DISTRO} DOCKERFILE="../$(DOCKERFILE)" MODULE=docker URL="docker=${TAG}" mtf -l *.py
 
 clean:
