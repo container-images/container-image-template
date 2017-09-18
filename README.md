@@ -25,6 +25,10 @@ It uses [distgen](https://github.com/devexp-db/distgen/) to render the `Dockerfi
 
 Note: default distro is `fedora-26-x86_64` and default version is `2.4`
 
+## Generated Files
+
+It is highly recommended that generated files are not stored in Github repos. Even thought this may be a matter of personal preference, we feel that storing lots of generated combinations of Dockerfile and other files and regenerating them on every commit is not the best approach. The exception to this is the readme file which, if templated, should be present in the repo in at least one generated combination to provide useful help for newcomers/contributors.
+
 ## Automatic Building on Docker Hub
 
 To setup an automated Docker Hub build for a repo that uses distgen, you need to include `hooks/pre_build`. This script makes sure that a certain configuration is rendered on Docker Hub prior to the build itself by using distgen in container in the `pre_build` stage.
