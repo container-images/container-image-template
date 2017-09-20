@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import json
 import urllib2
 import os
 
@@ -17,7 +18,13 @@ class SanityCheck1(module_framework.AvocadoTest):
 
     def test1(self):
         self.start()
-        r = urllib2.urlopen('http://localhost:{p}'.format(p=self.getConfig()['service']['port']))
+        address = json.loads(
+            self.runHost(
+                "docker container inspect %s" % self.backend.docker_id
+            ).stdout.strip())[0]["NetworkSettings"]["IPAddress"]
+        r = urllib2.urlopen('http://{a}:{p}'.format(
+            a=address,
+            p=self.getConfig()['service']['port']))
         html = r.read()
         self.assertEqual(html, 'I am awesome\n')
 
