@@ -1,0 +1,12 @@
+FROM fedora:26
+
+RUN dnf install -y dnf-plugins-core make golang-github-cpuguy83-go-md2man && \
+    dnf copr enable -y phracek/meta-test-family-devel && \
+    dnf install -y --enablerepo=updates-testing meta-test-family distgen
+# no need to `dnf clean all` since we don't distribute this image
+
+VOLUME /src
+WORKDIR /src
+# we don't need to create an unprivileged user for the test run
+# since we have complete access to docker socket = root on host
+ENTRYPOINT ["make", "test"]
