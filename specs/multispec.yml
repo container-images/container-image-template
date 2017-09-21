@@ -31,3 +31,7 @@ matrix:
     - distros:
         - fedora-26-x86_64
       version: "2.2"
+    - distros:
+        - fedora-25-x86_64
+        - centos-7-x86_64
+      variant: upstream
