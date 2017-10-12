@@ -14,6 +14,9 @@ DG_EXEC = ${DG} --max-passes 25 --spec specs/common.yml --multispec specs/multis
 DISTRO_ID = $(shell ${DG_EXEC} --template "{{ config.os.id }}")
 TAG = ${DISTRO_ID}/awesome:${VERSION}
 
+dependencies:
+	./requirements.sh
+
 dg:
 	${DG_EXEC} --template $(DOCKERFILE_SRC) --output $(DOCKERFILE)
 	${DG_EXEC} --template help/help.md --output help/help.md.rendered
@@ -22,14 +25,14 @@ doc: dg
 	mkdir -p ./root/
 	${GOMD2MAN} -in=help/help.md.rendered -out=./root/help.1
 
-build: doc dg
+build: dependencies doc dg
 	docker build --tag=${TAG} -f $(DOCKERFILE) .
 
 run: build
 	docker run -p 9000:9000 -d ${TAG}
 
 test: build
-	cd tests; VERSION=${VERSION} DISTRO=${DISTRO} DOCKERFILE="../$(DOCKERFILE)" MODULE=docker URL="docker=${TAG}" mtf -l *.py --xunit -
+	cd tests; MODULE=docker URL="docker=${TAG}" DOCKERFILE="../$(DOCKERFILE)" VERSION=${VERSION} DISTRO=${DISTRO} mtf -l *.py
 
 test-in-container: test-image
 	docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock:Z -v ${PWD}:/src ${TEST_IMAGE_NAME} "SELECTORS=${SELECTORS}"
