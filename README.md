@@ -18,7 +18,7 @@ It uses [distgen](https://github.com/devexp-db/distgen/) to render the `Dockerfi
 
 ## Usage
 
-* `sudo make install-dependencies` or alternatively: `sudo ./requirements.sh` - install tools for container build and test. You have to call it explicitly.
+* `sudo make install-dependencies` or alternatively: `sudo ./requirements.sh` - install tools to build and test the container image. You have to call it explicitly.
 * `make [DISTRO=<distgen-distro>] [VERSION=<version>] doc` - build docs (help file and a generated manpage) for a certain distro and software version
 * `make [DISTRO=<distgen-distro>] [VERSION=<version>] build` - build image for a certain distro and software version
 * `make [DISTRO=<distgen-distro>] [VERSION=<version>] run` - build and run container with a certain distro and software version

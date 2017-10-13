@@ -1,9 +1,12 @@
-FROM fedora:26
+FROM registry.fedoraproject.org/fedora:26
 
-ADD requirements.sh /root/requirements.sh
+COPY requirements.sh /root/requirements.sh
 
+# reason for sync: https://github.com/container-images/container-image-template/pull/10#issuecomment-336403824
+# and https://giphy.com/gifs/wat-loop-old-woman-jA8TT03Sj2pXO
 RUN chmod a+x /root/requirements.sh && \
-    /root/requirements.sh
+    sync && \
+    exec /root/requirements.sh
 
 VOLUME /src
 WORKDIR /src
