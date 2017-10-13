@@ -34,7 +34,7 @@ run: build
 test: build
 	cd tests; MODULE=docker URL="docker=${TAG}" DOCKERFILE="../$(DOCKERFILE)" VERSION=${VERSION} DISTRO=${DISTRO} mtf -l *.py
 
-test-in-container: test-image
+test-in-container: test-image build
 	docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock:Z -v ${PWD}:/src ${TEST_IMAGE_NAME} "SELECTORS=${SELECTORS}"
 
 test-image:
