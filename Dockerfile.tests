@@ -2,7 +2,8 @@ FROM fedora:26
 
 ADD requirements.sh /root/requirements.sh
 
-RUN bash /root/requirements.sh
+RUN chmod a+x /root/requirements.sh &&
+    /root/requirements.sh
 
 VOLUME /src
 WORKDIR /src

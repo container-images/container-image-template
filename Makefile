@@ -14,7 +14,7 @@ DG_EXEC = ${DG} --max-passes 25 --spec specs/common.yml --multispec specs/multis
 DISTRO_ID = $(shell ${DG_EXEC} --template "{{ config.os.id }}")
 TAG = ${DISTRO_ID}/awesome:${VERSION}
 
-dependencies:
+install-dependencies:
 	./requirements.sh
 
 dg:
@@ -25,7 +25,7 @@ doc: dg
 	mkdir -p ./root/
 	${GOMD2MAN} -in=help/help.md.rendered -out=./root/help.1
 
-build: dependencies doc dg
+build: doc dg
 	docker build --tag=${TAG} -f $(DOCKERFILE) .
 
 run: build
