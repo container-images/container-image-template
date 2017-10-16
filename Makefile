@@ -18,12 +18,12 @@ install-dependencies:
 	./requirements.sh
 
 dg:
-	${DG_EXEC} --template $(DOCKERFILE_SRC) --output $(DOCKERFILE)
-	${DG_EXEC} --template help/help.md --output help/help.md.rendered
+	${DG_EXEC} --template $(DOCKERFILE_SRC) > $(DOCKERFILE)
+	${DG_EXEC} --template help/help.md > help/help.md.rendered
 
 doc: dg
 	mkdir -p ./root/
-	${GOMD2MAN} -in=help/help.md.rendered -out=./root/help.1
+	${GOMD2MAN} -in=help/help.md.rendered > ./root/help.1
 
 build: doc dg
 	docker build --tag=${TAG} -f $(DOCKERFILE) .
