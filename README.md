@@ -26,6 +26,10 @@ It uses [distgen](https://github.com/devexp-db/distgen/) to render the `Dockerfi
 
 Note: default distro is `fedora-26-x86_64` and default version is `2.4`
 
+The included `Makefile` executes all commands in Docker containers (using [image-build-tools](https://github.com/container-images/image-build-tools/) image), hence no dependencies are necessary except of Docker itself. In order to use this `Makefile`, your user needs to have sufficient privileges to use docker. On most Linux distribution, this means adding yourself to the `docker` group. Note, however, that this might be problematic from security POV. For more information about this, please refer to the [Project Atomic article](https://www.projectatomic.io/blog/2015/08/why-we-dont-let-non-root-users-run-docker-in-centos-fedora-or-rhel/) that discusses this.
+
+It is of course possible to create a `Makefile` that wouldn't be using the [image-build-tools](https://github.com/container-images/image-build-tools/) container, but local executables of distgen, meta-test-family and other necessary tools.
+
 ## Generated Files
 
 It is highly recommended that generated files are not stored in Github repos. Even thought this may be a matter of personal preference, we feel that storing lots of generated combinations of Dockerfile and other files and regenerating them on every commit is not the best approach. The exception to this is the readme file which, if templated, should be present in the repo in at least one generated combination to provide useful help for newcomers/contributors.
