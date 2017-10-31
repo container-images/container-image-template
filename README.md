@@ -39,3 +39,5 @@ It is highly recommended that generated files are not stored in Github repos. Ev
 To setup an automated Docker Hub build for a repo that uses distgen, you need to include `hooks/pre_build`. This script makes sure that a certain configuration is rendered on Docker Hub prior to the build itself by using distgen in container in the `pre_build` stage.
 
 As your "Dockerfile Location" parameter at automated build settings at Docker Hub, you need to provide the path to your `Dockerfile.template`. The reason is that Docker Hub makes sure the file is in the repository prior to running any hooks - so if you used the name of the rendered `Dockerfile`, the file would not be found and the build would fail. The `hooks/pre_build` hook first renders your `Dockerfile` and then it runs `mv Dockerfile Dockerfile.template` to replace the template with the rendered `Dockerfile`. This means that `Dockerfile.template` provided in "Dockerfile Location" can actually be built by Docker Hub builder.
+
+## Dummy
