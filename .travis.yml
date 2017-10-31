@@ -5,6 +5,6 @@ sudo: required
 services:
   - docker
 script:
-  - 'make test-in-container SELECTORS="--distro fedora-26-x86_64.yaml --multispec-selector version=2.4 --multispec-selector variant=upstream"'
+  - 'make test SELECTORS="--distro fedora-26-x86_64.yaml --multispec-selector version=2.4 --multispec-selector variant=upstream"'
 notifications:
   email: false
