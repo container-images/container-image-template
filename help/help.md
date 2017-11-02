@@ -30,8 +30,9 @@ Also, describe default configuration options (when defined): hostname, domainnam
 # ENVIRONMENT VARIABLES
 Explain all environment variables available to run the image in different ways without the need of rebuilding the image. Change variables on the docker command line with -e option. For example:
 
-MYSQL_PASSWORD=mypass
-                The password set for the current MySQL user.
+|     Variable name        |       Description                                           |
+| :----------------------- | ------------------------------------------------------ |
+|   MYSQL_PASSWORD=mypass  | The password set for the current MySQL user.           | 
 
 # LABELS
 Describe LABEL settings (from the Dockerfile that created the image) that contains pertinent information.
